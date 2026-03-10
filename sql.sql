@@ -81,5 +81,14 @@ ORDER BY age DESC;
 
 SELECT * FROM students
 ORDER BY branch ASC, age DESC;
+select count(*) from students;
+select count(email) from students;
+select sum(age) from students;
 
+select sum(id) from students;
 
+select avg(age) from students;
+select branch, count(*) from students group by branch;
+select age , count(*) from students group by age;
+
+select branch, count(*) from students group by branch having count(*)>1;
