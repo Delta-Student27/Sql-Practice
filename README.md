@@ -7,6 +7,8 @@
 - Insert, Update, Delete
 - WHERE, LIKE, BETWEEN
 - ORDER BY
+- Joins and it's all types
+- Limit and Offset 
 
 ## Database Used:
 MySQL
