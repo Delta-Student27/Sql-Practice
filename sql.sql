@@ -88,6 +88,151 @@ select sum(age) from students;
 select sum(id) from students;
 
 select avg(age) from students;
+
+create database joins;
+use joins;
+
+create table students(
+student_id INT PRIMARY KEY,
+name VARCHAR(50),
+course_id INT
+);
+create table courses(
+course_id INT primary key,
+course_name varchar(5)
+);
+alter table courses MODIFY course_name VARCHAR(50);
+create table trainers(
+trainer_id INT Primary key,
+trainer_name varchar(50),
+course_id int
+);
+INSERT INTO students VALUES
+(1, 'Amit', 101),
+(2, 'Neha', 102),
+(3, 'Raj', 101),
+(4, 'Simran', NULL),
+(5, 'John', 103);
+
+INSERT INTO courses VALUES
+(101, 'SQL'),
+(102, 'Python'),
+(103, 'Java'),
+(104, 'Excel');
+
+INSERT INTO trainers VALUES
+(1, 'Ravi', 101),
+(2, 'Meena', 102),
+(3, 'Karan', 103);
+select * from students;
+select * from train;
+select * from courses;
+select s.name,c.course_name
+from students s 
+INNER JOIN courses c on s.course_id=c.course_id;
+
+select s.name , c.course_name
+from students s 
+LEFT JOIN courses c ON s.course_id=c.course_id;
+
+select s.name,c.course_name
+from students s
+RIGHT JOIN courses c ON s.course_id=c.course_id;
+
+select name from students where course_id is null;
+
+select c.course_name
+from courses c 
+left join students s on c.course_id = s.course_id
+where s.student_id is null;
+
+select s.name,c.course_name,t.trainer_name
+from students s
+INNER JOIN courses c ON s.course_id=c.course_id
+INNER JOIN trainers t on c.course_id=t.course_id;
+
+select t.trainer_name,c.course_name
+from trainers t 
+INNER JOIN courses c ON t.course_id=c.course_id;
+
+CREATE TABLE employees (
+    emp_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    department VARCHAR(50),
+    salary INT,
+    hire_date DATE,
+    age INT,
+    city VARCHAR(50),
+    manager_id INT
+);
+
+INSERT INTO employees VALUES
+(1, 'John', 'Smith', 'Sales', 45000, '2019-03-15', 29, 'Mumbai', NULL),
+(2, 'Priya', 'Sharma', 'IT', 65000, '2020-07-22', 34, 'Pune', 1),
+(3, 'Amit', 'Kumar', 'IT', 58000, '2018-01-10', 41, 'Nashik', 1),
+(4, 'Sara', 'Khan', 'HR', 42000, '2021-05-30', 26, 'Mumbai', 1),
+(5, 'Rahul', 'Verma', 'Sales', 51000, '2017-11-05', 38, 'Delhi', 1),
+(6, 'Neha', 'Patel', 'IT', 72000, '2022-02-14', 30, 'Nashik', 2),
+(7, 'Vikram', 'Singh', 'Finance', 60000, '2016-09-01', 45, 'Pune', NULL),
+(8, 'Anjali', 'Mehta', 'Finance', 39000, '2023-01-19', 24, 'Mumbai', 7),
+(9, 'Karan', 'Joshi', 'Sales', 48000, '2020-12-25', 33, 'Delhi', 1),
+(10, 'Divya', 'Reddy', 'HR', NULL, '2019-08-08', 28, 'Nashik', 4);
+-- where clause 
+select * from employees where department = 'IT';
+select * from employees where salary > 50000;
+select * from employees where not department = 'IT';
+select * from employees where age >=30;
+
+-- AND/OR
+select * from employees where department = 'IT' AND salary > 60000;
+select * from employees where city = 'Mumbai' OR city = 'Delhi';
+select * from employees where department = 'Sales' AND age > 30 AND salary > 50000;
+
+-- Between 
+select * from employees where salary Between 45000 AND 60000;
+select * from employees where hire_date Between 2019-01-01 AND 2021-12-31;
+
+-- In/Not In
+select * from employees where department='IT'OR'HR' OR 'Finance';
+select * from employees where not department = 'Nashik' OR 'Pune';
+
+-- LIKE
+select * from employees where  first_name LIKE 'A%';
+select * from employees where last_name like '%a';
+select * from employees where city like '%u%';
+
+-- null handling
+select * from employees where  manager_id is null;
+select * from employees where salary is null;
+
+select * from employees where department = 'IT' OR 'Finance' AND salary > 40000 AND hire_date =2018-01-01;
+select * from employees where first_name like 'S%' AND not city='Mumbai';
+
+select * from employees where department='Sales' order by salary desc;
+select * from employees order by salary desc limit 3 offset 2;
+
+-- order by 
+select * from employees order by salary asc;
+select * from employees order by salary desc;
+select * from employees order by first_name asc;
+select * from employees order by hire_date asc;
+select * from employees order by department asc , salary desc;
+select * from employees order by city asc , age asc;
+select * from employees where department = 'IT' order by salary desc;
+select * from employees where hire_date = '2019-01-01' order by hire_date asc;
+
+-- limit 
+select * from employees order by salary desc limit 3;
+select * from employees order by age asc limit 3;
+select * from employees order by emp_id asc limit 5;
+select * from employees order by salary desc limit 2 offset 1;
+select * from employees order by salary desc limit 3 offset 3;
+select * from employees where salary is null order by salary asc;
+select * from employees where salary is null order by salary desc;
+select * from employees where department = 'Sales' order by salary desc limit 2;
+select * from employees order by hire_date desc limit 3;
+select * from employees where not department ='IT' order by salary desc limit 3;
 select branch, count(*) from students group by branch;
 select age , count(*) from students group by age;
 
