@@ -8,7 +8,9 @@
 - WHERE, LIKE, BETWEEN
 - ORDER BY
 - Joins and it's all types
-- Limit and Offset 
+- Limit and Offset
+- GroupBy
+- Having
 
 ## Database Used:
 MySQL
