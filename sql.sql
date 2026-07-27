@@ -277,3 +277,27 @@ RIGHT JOIN departments d ON e.dept_id=d.dept_id;
 select e.name, d.dept_name from employee e INNER JOIN departments d ON e.dept_id=d.dept_id;
 select e.name ,d.dept_name from employee e right JOIN departments d ON e.dept_id=d.dept_id;
 select e.name,d.dept_name, l.city from employee e INNER JOIN departments d ON e.dept_id=d.dept_id INNER JOIN locations l ON d.dept_id=l.dept_id;
+
+select department ,count(*) from employees group by department;
+select department ,SUM(salary) from employees group by department;
+select department, avg(salary) from employees group by department;
+select department , MIN(salary) from employees group by department;
+select department, MAX(salary) from employees group by department;
+select department from employees group by department having count(*) > 1;
+select department from employees group by department having avg(salary)> 50000;
+select department from employees group by department having sum(salary) between 6000 and 50000;
+select department from employees group by department order by employee_count  desc;
+select department from employees group by department having count(*) > 2 order by avg(salary) desc;
+select department,count(*) from employees group by department;
+select city , count(*) from employees group by city;
+select department,avg(salary) from employees group by department;
+select department , sum(salary) from employees group by department;
+select department , min(hire_date) from employees group by department;
+select city from employees group by city having count(*)=2; 
+select department from employees group by department having avg(salary) > 55000;
+select department from employees group by department having MAX(salary) > 10000;
+select manager_id from employees group by manager_id having count(*) > 2;
+select department from employees group by department having avg(age) < 30;
+select department ,count(*) from employees where hire_date > '2020-01-01' group by department; 
+select department from employees group by department having count(*) > 2 order by avg(salary) desc;
+
