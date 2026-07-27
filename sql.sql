@@ -237,3 +237,43 @@ select branch, count(*) from students group by branch;
 select age , count(*) from students group by age;
 
 select branch, count(*) from students group by branch having count(*)>1;
+
+create table employee(
+emp_id INT PRIMARY KEY,
+name VARCHAR(50),
+dept_id INT,
+salary INT
+);
+select * from employee;
+select * from departments;
+select * from locations;
+create table departments(
+dept_id INT PRIMARY KEY,
+dept_name VARCHAR(50)
+);
+
+create table locations(
+dept_id INT,
+city VARCHAR(50)
+);
+
+insert into employee values(1,'Amit',101,50000),(2,'Ram',102,60000),(3,'Raj',101,55000),(4,'Simran',103,70000),(5,'john',Null,40000);
+insert into departments values(101,'HR'),(102,'IT'),(103,'Finance'),(104,'Marketing');
+insert into locations values(101,'Pune'),(102,'Mumbai'),(103,'Delhi');
+SELECT *
+FROM employee e
+INNER JOIN departments d
+ON e.dept_id = d.dept_id;
+
+select e.name,d.dept_name
+from employee e
+LEFT JOIN departments d
+ON e.dept_id=d.dept_id;
+
+select * 
+from employee e
+RIGHT JOIN departments d ON e.dept_id=d.dept_id;
+
+select e.name, d.dept_name from employee e INNER JOIN departments d ON e.dept_id=d.dept_id;
+select e.name ,d.dept_name from employee e right JOIN departments d ON e.dept_id=d.dept_id;
+select e.name,d.dept_name, l.city from employee e INNER JOIN departments d ON e.dept_id=d.dept_id INNER JOIN locations l ON d.dept_id=l.dept_id;
